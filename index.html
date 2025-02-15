@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnosis Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        .result-box {
+            background: #e8f4ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            text-align: left;
+        }
+        .result-box h3 {
+            margin: 0;
+            color: #007bff;
+        }
+        .confidence {
+            font-weight: bold;
+            color: #ff5733;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .consult-btn {
+            background-color: #007bff;
+            color: white;
+        }
+        .retry-btn {
+            background-color: #ccc;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Diagnosis Result</h2>
+
+        <div id="results"></div>
+
+        <div class="buttons">
+            <button class="button consult-btn" onclick="bookConsultation()">Book Consultation</button>
+            <button class="button retry-btn" onclick="retry()">Re-check Symptoms</button>
+        </div>
+    </div>
+
+    <script>
+        // Dummy data (Normally this would come from the form submission)
+        const results = [
+            { name: "Flu", confidence: 85, description: "Common viral infection causing fever, cough, and fatigue." },
+            { name: "Common Cold", confidence: 72, description: "Mild respiratory infection causing sneezing and sore throat." }
+        ];
+
+        // Function to display results
+        function displayResults() {
+            const resultsDiv = document.getElementById("results");
+            results.forEach(disease => {
+                const diseaseBox = document.createElement("div");
+                diseaseBox.classList.add("result-box");
+                diseaseBox.innerHTML = `
+                    <h3>${disease.name}</h3>
+                    <p class="confidence">Confidence Score: ${disease.confidence}%</p>
+                    <p>${disease.description}</p>
+                `;
+                resultsDiv.appendChild(diseaseBox);
+            });
+        }
+
+        // Call function to load results
+        displayResults();
+
+        // Button functions
+        function bookConsultation() {
+            alert("Redirecting to consultation page...");
+            // window.location.href = "consultation.html"; // Uncomment if you have a consultation page
+        }
+
+        function retry() {
+            alert("Redirecting to symptom checker...");
+            window.location.href = "index.html"; // Redirect back to the symptom form page
+        }
+    </script>
+
+</body>
+</html>
